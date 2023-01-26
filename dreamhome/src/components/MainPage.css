@@ -1,0 +1,42 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position:sticky;
+    
+    padding: 0 40px 0 40px;
+    border-bottom: 1px solid rgb(214, 214, 214);
+   
+}
+.addoroduct__btn {
+    float: right;
+    
+   
+}
+
+.name {
+    color: rgb(197, 196, 196);
+}
+
+.logoutbtn:hover {
+    background-color: rgb(74, 229, 250);
+    color: white;
+}
+.allProducts {
+    display: flex;
+    padding: 0 20px 0 20px;
+    flex-wrap: wrap;
+}
+.products {
+    border: 1px solid blue;
+    margin-top: 10px;
+    margin-left: 50px;
+}
+.productImage {
+    width: 300px;
+    height: 100px;
+    background-color: rgb(248, 123, 123);
+}
+.description {
+    padding: 0 10px 0 10px;
+}

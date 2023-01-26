@@ -1,0 +1,9 @@
+.logoutbtn {
+    width: 150px;
+    height: 50px;
+    border-radius: 30px;
+    color: rgb(197, 196, 196);
+    border: none;
+    background-color: white;
+    transition: ease-in-out;
+}

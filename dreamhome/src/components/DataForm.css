@@ -1,0 +1,30 @@
+.dataform {
+    display: flex;
+    flex-direction: column;
+    max-width: max-content;
+    margin: 10px 40% 0 30%;
+     padding: 20px;
+     border: 1px solid pink;
+   
+}
+.dataform__input {
+    width: 300px;
+    height: 35px;
+  
+
+}
+.dataform__btn {
+    width: 300px;
+    height: 35px;
+    margin-top: 20px;
+}
+.dataform__required {
+    display: flex;
+    flex-direction: column;
+    
+}
+.dataform__required__input {
+    color: red;
+    margin: 0;
+    padding: 0;
+}
