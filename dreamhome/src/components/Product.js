@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addProduct } from "../features/ProductSlice";
 import { Link } from "react-router-dom";
@@ -14,9 +14,6 @@ const Product = (props) => {
   }, []);
 
   const getSortedProducts = () => {
-    if (Array.isArray(props.searchBy)) {
-      return props.searchBy;
-    }
     const arr = [...productarr];
     if (props.sortBy.length == 1) {
       return arr.sort((a, b) => {
@@ -27,6 +24,10 @@ const Product = (props) => {
       return arr.sort((a, b) => {
         return a.price - b.price || a.quantity - b.quantity;
       });
+    }
+
+    if (Array.isArray(props.searchBy)) {
+      return props.searchBy;
     }
 
     return productarr;
