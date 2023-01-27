@@ -60,7 +60,7 @@ const MainPage = () => {
   let UI = (
     <div className="mainPageContainer">
       <div className="header">
-        <h4 className="name">Feraz Khan</h4>
+        <h4 className="name">{authState.userName}</h4>
         <Button onClick={logoutHandler} className="logoutbtn">
           LogOut
         </Button>
