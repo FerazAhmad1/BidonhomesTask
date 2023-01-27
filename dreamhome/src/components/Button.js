@@ -6,7 +6,7 @@ const Button = (props) => {
     props.onClick();
   };
   return (
-    <button onClick={clickHandler} className="logoutbtn">
+    <button onClick={clickHandler} className={props.className}>
       {props.children}
     </button>
   );

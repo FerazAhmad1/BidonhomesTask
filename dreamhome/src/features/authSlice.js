@@ -1,9 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isLoggedin: false,
-  userEmail: "",
-  userName: "",
+  isLoggedin:
+    localStorage.getItem("email") && localStorage.getItem("name")
+      ? true
+      : false,
+  userEmail: localStorage.getItem("email") || "",
+  userName: localStorage.getItem("name") || "",
 };
 
 const authSlice = createSlice({

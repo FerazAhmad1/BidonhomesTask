@@ -1,8 +1,8 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { addProduct } from "../features/ProductSlice";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./DataForm.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 const DataForm = (props) => {
   const dataNameRef = useRef();
@@ -12,6 +12,24 @@ const DataForm = (props) => {
   const dataImageRef = useRef();
   const navigator = useNavigate();
   const dispatch = useDispatch();
+  const productarr = useSelector((state) => state.product.proarr);
+
+  const { id } = useParams();
+  const index = productarr.findIndex((el) => el.id == id);
+
+  useEffect(() => {
+    if (index >= 0) {
+      const obj = productarr[index];
+      dataNameRef.current.value = obj.Name;
+      dataPriceRef.current.value = obj.price;
+      dataQuantityRef.current.value = obj.quantity;
+      dataImageRef.current.value = obj.imageUrl ? obj.imageUrl : "";
+      dataDescriptionRef.current.value = obj.desctription
+        ? obj.desctription
+        : "";
+    }
+  }, [id]);
+
   const dataSaveHandler = (e) => {
     e.preventDefault();
     const Name = dataNameRef.current.value;
@@ -24,16 +42,34 @@ const DataForm = (props) => {
       alert("please fill all the reqired field at least");
       return;
     }
-    dispatch(
-      addProduct({
+    console.log(index >= 0);
+    if (index >= 0) {
+      // productarr.splice(index, 1);
+      const filterdarr = productarr.filter((el) => {
+        return el.id !== id;
+      });
+      const nwobj = {
+        id: productarr[index].id,
         Name,
         price: Price,
         quantity: Quantity,
         imageUrl: Image ? Image.trim() : undefined,
         Description: desctription ? desctription.trim() : undefined,
-      })
-    );
-    props.onClick();
+      };
+      dispatch(addProduct([...filterdarr, nwobj]));
+    } else {
+      dispatch(
+        addProduct({
+          id: "id" + Math.random().toString(16).slice(2),
+          Name,
+          price: Price,
+          quantity: Quantity,
+          imageUrl: Image ? Image.trim() : undefined,
+          Description: desctription ? desctription.trim() : undefined,
+        })
+      );
+    }
+
     navigator("/mainpage");
   };
 
